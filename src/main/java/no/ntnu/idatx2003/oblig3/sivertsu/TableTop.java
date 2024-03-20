@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,8 +38,9 @@ public class TableTop extends Application {
     rootNode.setCenter(centerContainer);
 
     //set the minimum size of the window
-    stage.setMinWidth(500);
+    stage.setMinWidth(275);
     stage.setMinHeight(300);
+    stage.setFullScreen(true);
 
     //sett the stage
     stage.setScene(new Scene(rootNode, 400, 300));
@@ -50,19 +52,20 @@ public class TableTop extends Application {
     FlowPane bottomContainer = new FlowPane();
 
     //organising the bottom container
-    bottomContainer.setAlignment(Pos.CENTER);
     bottomContainer.setPadding(new Insets(10));
 
     //set minimum size for the bottom container
-    bottomContainer.setMinHeight(150);
+    bottomContainer.setMinHeight(100);
+    bottomContainer.setAlignment(Pos.CENTER);
+    bottomContainer.setHgap(50);
 
     //text box and function display for bottom container
-    FlowPane sum = sumOfCard();
-    FlowPane hearts = cardIsHearts();
-    FlowPane flush = cardIsFlush();
-    FlowPane queenOfSpades = queenOfSpades();
+    HBox sumIs = sumOfCard();
+    HBox heartsIs = cardIsHearts();
+    HBox flushIs = cardIsFlush();
+    HBox queenOfSpadesIs = queenOfSpades();
 
-    bottomContainer.getChildren().addAll(sum, hearts, flush, queenOfSpades);
+    bottomContainer.getChildren().addAll(sumIs, heartsIs, flushIs, queenOfSpadesIs);
 
     return bottomContainer;
   }
@@ -71,16 +74,13 @@ public class TableTop extends Application {
    * create the sum field for the bottom container
    * @return the sum field
    */
-  public FlowPane sumOfCard () {
-    FlowPane sumOfCard = new FlowPane();
+  public HBox sumOfCard () {
+    HBox sumOfCard = new HBox();
 
-    sumOfCard.setHgap(5);
+    sumOfCard.setSpacing(5);
 
     Label textSum = new Label("sum of faces:");
     sum = new Label("-");
-
-    sumOfCard.setAlignment(Pos.CENTER);
-    sumOfCard.setHgap(2);
 
     sumOfCard.getChildren().add(textSum);
     sumOfCard.getChildren().add(sum);
@@ -92,10 +92,10 @@ public class TableTop extends Application {
    * create the hearts field for the bottom container
    * @return the hearts field
    */
-  public FlowPane cardIsHearts () {
-    FlowPane isHearts = new FlowPane();
+  public HBox cardIsHearts () {
+    HBox isHearts = new HBox();
 
-    isHearts.setHgap(5);
+    isHearts.setSpacing(5);
 
     Label heartsLabel = new Label("cards of hearts:");
     hearts = new Label("-");
@@ -109,10 +109,10 @@ public class TableTop extends Application {
    * create the flush field for the bottom container
    * @return flush
    */
-  public FlowPane cardIsFlush() {
-    FlowPane isFlush = new FlowPane();
+  public HBox cardIsFlush() {
+    HBox isFlush = new HBox();
 
-    isFlush.setHgap(5);
+    isFlush.setSpacing(5);
 
     Label flushLabel = new Label("flush:");
     flush = new Label("-");
@@ -126,10 +126,10 @@ public class TableTop extends Application {
    * create the queen of spade field for the bottom container
    * @return true if queen of spade is present
    */
-  public FlowPane queenOfSpades() {
-    FlowPane isQueenOfSpades = new FlowPane();
+  public HBox queenOfSpades() {
+    HBox isQueenOfSpades = new HBox();
 
-    isQueenOfSpades.setHgap(5);
+    isQueenOfSpades.setSpacing(5);
 
     Label queenOfSpadesLabel = new Label("Queen of spades:");
     queenOfSpades = new Label("-");
@@ -152,9 +152,17 @@ public class TableTop extends Application {
     // button for right container
     Button dealHand = new Button("Deal Hand");
     Button checkButton = new Button("Check Hand");
+    Button exit = new Button("Exit");
+
+    //style the buttons
+    dealHand.setStyle("-fx-background-color: #4fa14f");
+    checkButton.setStyle("-fx-background-color: #4fa14f");
+    exit.setStyle("-fx-background-color: #e74343");
+
+
 
     //get the buttons
-    rightContainer.getChildren().addAll(dealHand, checkButton);
+    rightContainer.getChildren().addAll(dealHand, checkButton, exit);
 
     //set the function for the buttons
     dealHand.setOnAction(event ->
@@ -166,6 +174,7 @@ public class TableTop extends Application {
       controller.numberOfHearts();
       controller.hasQueenOfSpades();
     });
+    exit.setOnAction(event -> System.exit(0));
 
 
     return rightContainer;
