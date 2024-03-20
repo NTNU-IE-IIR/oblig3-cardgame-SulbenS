@@ -22,17 +22,14 @@ public class ButtonController {
   }
 
   public void hasFlush(){
-    this.dealFunction.hasFlush();
     this.tableTop.setFlush(this.dealFunction.hasFlush());
  }
 
   public void hasQueenOfSpades() {
-    this.dealFunction.hasQueenOfSpades();
     this.tableTop.setQueenOfSpades(this.dealFunction.hasQueenOfSpades());
   }
 
   public void numberOfHearts() {
-    this.dealFunction.numberOfHearts();
     this.tableTop.setNumberOfHearts(this.dealFunction.numberOfHearts());
   }
 }
