@@ -1,3 +1,5 @@
+package no.ntnu.idatx2003.oblig3.sivertsu;
+
 import no.ntnu.idatx2003.oblig3.sivertsu.TableTop;
 
 public class Main {

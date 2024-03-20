@@ -174,7 +174,7 @@ public class TableTop extends Application {
   public FlowPane centerContainer() {
     FlowPane centerContainer = new FlowPane();
 
-    //organising the center container
+    //style the center container
     centerContainer.setStyle("-fx-background-color: #4fa14f");
 
     //display the cards on the hand
